@@ -19,6 +19,11 @@ namespace TestTask.Services.Implementations
         async Task<User> IUserService.GetUser()
         {
 
+            /*return await _context.Users
+                .Where(u => u.Orders.Any(o => o.CreatedAt.Year == 2003))
+                .OrderByDescending(u => u.Orders.Where(o => o.CreatedAt.Year == 2003).Sum(o => o.Price))
+                .FirstOrDefaultAsync();*/
+
             var userWithMaxWaste = await _context.Users
                 .Where(o => o.Orders.Any(o => o.CreatedAt.Year == 2003))
                 .Select(user => new
@@ -34,7 +39,6 @@ namespace TestTask.Services.Implementations
 
         async Task<List<User>> IUserService.GetUsers()
         {
-
             return await _context.Users
                 .Where(o => o.Orders.Any(o => o.CreatedAt.Year == 2010 && o.Status == OrderStatus.Paid))
                 .ToListAsync();
