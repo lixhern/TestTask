@@ -17,8 +17,6 @@ namespace TestTask.Services.Implementations
 
         async Task<Order> IOrderService.GetOrder()
         {
-
-
             return await _context.Orders
                 .Where(o => o.Quantity > 1)
                 .OrderByDescending(o => o.CreatedAt)
