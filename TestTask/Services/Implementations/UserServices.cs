@@ -36,9 +36,8 @@ namespace TestTask.Services.Implementations
         {
 
             return await _context.Users
-                .Where(o => o.Orders.Any(s => s.Status == OrderStatus.Paid))
+                .Where(o => o.Orders.Any(o => o.CreatedAt.Year == 2010 && o.Status == OrderStatus.Paid))
                 .ToListAsync();
-            //
         }
     }
 }
